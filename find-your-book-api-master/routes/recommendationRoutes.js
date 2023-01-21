@@ -4,16 +4,16 @@ const recommendationController = require('../controllers/recommendationControlle
 const router = express.Router();
 
 router.route('/global/:id')
-        .get(recommendationController.getGlobalRec);
+        .post(recommendationController.getGlobalRec);
 
 router.route('/readertastes/:id')
-        .get(recommendationController.getReaderTastes);
+        .post(recommendationController.getReaderTastes);
 
 router.route('/friendtastes/:id')
-        .get(recommendationController.getFriendTastes);
+        .post(recommendationController.getFriendTastes);
 
 router.route('/readerauthors/:id')
-        .get(recommendationController.getReaderAuthors);
+        .post(recommendationController.getReaderAuthors);
 
 router.route('/books/similar/:isbn')
         .get(recommendationController.getSimilarBooks);

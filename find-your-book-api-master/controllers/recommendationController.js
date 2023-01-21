@@ -41,11 +41,15 @@ exports.getGlobalRec = catchAsyncErrors(async (req,res,next)=>{
             ORDER BY points DESC SKIP ${viewMore*limit} LIMIT ${limit};`)
         );
 
+
         let books = [];
         book.records.forEach(e=>{
-            if(e._fields[0]!=null)
-            books.push([e._fields[0],e._fields[1],e._fields[2].low]);
-        });    
+            if(e._fields[0]!=null){
+                books.push([e._fields[0],e._fields[1],e._fields[2].low]);
+            }
+            
+        });
+        
         if(books.length-6<0){
             const book2 = await session.executeRead(tx =>
                 tx.run(
@@ -59,9 +63,11 @@ exports.getGlobalRec = catchAsyncErrors(async (req,res,next)=>{
 
             book2.records.forEach(e=>{
                 if(e._fields[0]!=null)
-                books.push([e._fields[0],e._fields[1],e._fields[2].low]);
+                {
+                    books.push([e._fields[0],e._fields[1],e._fields[2].low]);
+                }
             });
-        } 
+        }
 
         res.status(200).json({
             status:'success',

@@ -29,7 +29,6 @@ exports.login = catchAsyncErrors(async (req,res,next) => {
             expiresIn:'30d',
         })
         delete user.password;
-        console.log({user,token});
         res.status(201).json({token , user});
     }
     catch (e) {
